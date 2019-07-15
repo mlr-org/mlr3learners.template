@@ -13,15 +13,15 @@
 #' \url{https://doi.org/10.1023/A:1010933404324}
 #'
 #' @export
-LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = LearnerClassif,
+LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = LearnerClassif, #adapt the name to your learner. For regression learners inherit = LearnerRegr
   public = list(
-    initialize = function(id = "classif.randomForest") {
+    initialize = function(id = "classif.randomForest") { #adapt name
       super$initialize(
-        id = id,
-        packages = "randomForest",
-        feature_types = c("numeric", "factor", "ordered"),
-        predict_types = c("response", "prob"),
-        param_set = ParamSet$new(
+        id = id, #don't change this
+        packages = "randomForest", # adapt learner package
+        feature_types = c("numeric", "factor", "ordered"), # which feature types are supported? Must be a subset of mlr_reflections$task_feature_types
+        predict_types = c("response", "prob"), # which predict types are supported? See mlr_reflections$learner_predict_types
+        param_set = ParamSet$new( #the defined parameter set, now with the paradox package. See readme.rmd for more details
           params = list(
             ParamInt$new(id = "ntree", default = 500L, lower = 1L, tags = c("train", "predict")),
             ParamInt$new(id = "mtry", lower = 1L, tags = "train"),
@@ -32,7 +32,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
             ParamUty$new(id = "sampsize", tags = "train"), #lower = 1L
             ParamInt$new(id = "nodesize", default = 1L, lower = 1L, tags = "train"),
             ParamInt$new(id = "maxnodes", lower = 1L, tags = "train"),
-            ParamFct$new(id = "importance", default = "accuracy", levels = c("accuracy", "gini", "none"), tag = "train"),
+            ParamFct$new(id = "importance", default = "none", levels = c("accuracy", "gini", "none"), tag = "train"),
             ParamLgl$new(id = "localImp", default = FALSE, tags = "train"),
             ParamLgl$new(id = "proximity", default = FALSE, tags = "train"),
             ParamLgl$new(id = "oob.prox", tags = "train"), #requires = quote(proximity == TRUE)
@@ -42,7 +42,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
             ParamLgl$new(id = "keep.inbag", default = FALSE, tags = "train")
           )
         ),
-        param_vals = list(importance = "accuracy"),
+        param_vals = list(importance = "none"),
         properties = c("weights", "twoclass", "multiclass", "importance", "oob_error")
       )
     },
@@ -104,6 +104,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
         x = setNames(imp[["MeanDecreaseGini"]], rownames(imp))
         return(sort(x, decreasing = TRUE))
       }
+      if (pars[["importance"]] == "none") return(message("importance was set to 'none'. No importance available."))
     }
   )
 )
