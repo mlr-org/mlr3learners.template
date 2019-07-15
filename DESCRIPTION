@@ -2,22 +2,25 @@ Package: mlr3learnertemplate
 Title: Template for Adding New Learners to 'mlr3'
 Version: 0.1.0
 Authors@R:
-    c(person(given = "Quay",
-             family = "Au",
-             role = c("cre", aut"),
-             email = "quayau@gmail.com",
-             comment = c(ORCID = "0000-0002-5252-8902")))
+    c(person(given = "given.name",
+             family = "family.name",
+             role = "cre",
+             email = "email@email.com")
+      )
 Description: Template for adding new learners to 'mlr3'.
 License: LGPL-3
 Depends:
     R (>= 3.1.0)
 Imports:
+    checkmate,
     data.table,
     mlr3,
+    mlr3misc,
     paradox,
     R6
 Suggests:
     testthat,
+    rmarkdown,
     randomForest
 Encoding: UTF-8
 NeedsCompilation: no

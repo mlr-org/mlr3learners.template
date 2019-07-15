@@ -8,19 +8,7 @@
 \description{
 Template for adding new learners to 'mlr3'.
 }
-\seealso{
-Useful links:
-\itemize{
-  \item Report bugs at \url{https://github.com/mlr-org/mlr3learnertemplate/issues}
-}
-
-}
 \author{
-\strong{Maintainer}: Michel Lang \email{michellang@gmail.com} (0000-0001-9754-0393)
-
-Authors:
-\itemize{
-  \item Quay Au \email{quayau@gmail.com} (0000-0002-5252-8902)
-}
+\strong{Maintainer}: given.name family.name \email{email@email.com}
 
 }
