@@ -32,17 +32,17 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
             ParamUty$new(id = "sampsize", tags = "train"), #lower = 1L
             ParamInt$new(id = "nodesize", default = 1L, lower = 1L, tags = "train"),
             ParamInt$new(id = "maxnodes", lower = 1L, tags = "train"),
-            ParamFct$new(id = "importance", default = "none", levels = c("accuracy", "gini", "none"), tag = "train"),
+            ParamFct$new(id = "importance", default = "none", levels = c("accuracy", "gini", "none"), tag = "train"), #importance is a logical value in the randomForest package.
             ParamLgl$new(id = "localImp", default = FALSE, tags = "train"),
             ParamLgl$new(id = "proximity", default = FALSE, tags = "train"),
-            ParamLgl$new(id = "oob.prox", tags = "train"), #requires = quote(proximity == TRUE)
+            ParamLgl$new(id = "oob.prox", tags = "train"),
             ParamLgl$new(id = "norm.votes", default = TRUE, tags = "train"),
             ParamLgl$new(id = "do.trace", default = FALSE, tags = "train"),
             ParamLgl$new(id = "keep.forest", default = TRUE, tags = "train"),
             ParamLgl$new(id = "keep.inbag", default = FALSE, tags = "train")
           )
         ),
-        param_vals = list(importance = "none"),
+        param_vals = list(importance = "none"), #we set this here, because the default is FALSE in the randomForest package.
         properties = c("weights", "twoclass", "multiclass", "importance", "oob_error")
       )
     },
@@ -50,19 +50,21 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
     train_internal = function(task) {
       pars = self$param_set$get_values(tags = "train")
 
+      #setting the importance value to logical
       if (pars[["importance"]] != "none") {
         pars[["importance"]] = TRUE
       } else {
         pars[["importance"]] = FALSE
       }
 
-      f = task$formula()
-      data = task$data()
+      #get formula, data, classwt, cutoff for the randomForest package
+      f = task$formula() #the formula is available in the task
+      data = task$data() #the data is avail
       levs = levels(data[[task$target_names]])
       n = length(levs)
+
       if (!"cutoff" %in% names(pars))
         cutoff = rep(1 / n, n)
-
       if ("classwt" %in% names(pars)) {
         classwt = pars[["classwt"]]
         if (is.numeric(classwt) && length(classwt) == n && is.null(names(classwt)))
@@ -72,7 +74,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
       }
       if (is.numeric(cutoff) && length(cutoff) == n && is.null(names(cutoff)))
         names(cutoff) = levs
-      invoke(randomForest::randomForest, formula = f, data = data, classwt = classwt, cutoff = cutoff, .args = pars)
+      invoke(randomForest::randomForest, formula = f, data = data, classwt = classwt, cutoff = cutoff, .args = pars) #use the invoke function (it's similar to do.call())
     },
 
     predict_internal = function(task) {
@@ -84,9 +86,9 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
         type = type, .args = pars)
 
       if (self$predict_type == "response") {
-        list(response = p)
+        PredictionClassif$new(task = task, response = p)
       } else {
-        list(prob = p)
+        PredictionClassif$new(task = task, prob = p)
       }
     },
 
@@ -105,6 +107,10 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
         return(sort(x, decreasing = TRUE))
       }
       if (pars[["importance"]] == "none") return(message("importance was set to 'none'. No importance available."))
+    },
+
+    oob_error = function() {
+      mean(self$model$err.rate[, 1])
     }
   )
 )
