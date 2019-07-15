@@ -17,11 +17,3 @@ register_mlr3 = function() {
   register_mlr3()
   setHook(packageEvent("mlr3", "onLoad"), function(...) register_mlr3(), action = "append")
 } # nocov end
-
-.onUnload = function(libpath) {
-  # nocov start
-  event = packageEvent("mlr3", "onLoad")
-  hooks = getHook(event)
-  pkgname = vapply(hooks, function(x) environment(x)$pkgname, NA_character_)
-  setHook(event, hooks[pkgname != "mlr3learners"], action = "replace")
-} # nocov end
