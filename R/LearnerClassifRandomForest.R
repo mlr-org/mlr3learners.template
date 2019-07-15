@@ -43,7 +43,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
           )
         ),
         param_vals = list(importance = "none"), #we set this here, because the default is FALSE in the randomForest package.
-        properties = c("weights", "twoclass", "multiclass", "importance", "oob_error")
+        properties = c("weights", "twoclass", "multiclass", "importance", "oob_error") #see mlr_reflections$learner_properties
       )
     },
 
