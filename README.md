@@ -30,17 +30,17 @@ Rename the following files to suit your learner:
 - For the parameter set see https://github.com/mlr-org/paradox for more information.
 - For an existing mlr learner, you can follow these rules:
   
-`makeIntegerLearnerParam()` $\rightarrow$ `ParamInt$new()`
+`makeIntegerLearnerParam()` &rarr; `ParamInt$new()`
 
-`makeLogicalLearnerParam()` $\rightarrow$ `ParamLgl$new()`
+`makeLogicalLearnerParam()` &rarr; `ParamLgl$new()`
 
-`makeNumericVectorLearnerParam()` $\rightarrow$ `ParamUty$new()`
+`makeNumericVectorLearnerParam()` &rarr; `ParamUty$new()`
 
-`makeIntegerVectorLearnerParam()` $\rightarrow$ `ParamUty$new()`
+`makeIntegerVectorLearnerParam()` &rarr; `ParamUty$new()`
 
-`makeUntypedLearnerParam()` $\rightarrow$ `ParamUty$new()`
+`makeUntypedLearnerParam()` &rarr; `ParamUty$new()`
 
-`makeNumericLearnerParam()` $\rightarrow$ `ParamDbl$new()`
+`makeNumericLearnerParam()` &rarr; `ParamDbl$new()`
 
 - delete the option `tunable`, as it is not needed anymore
 - for dependencies, use the method $add_dep() (see https://github.com/mlr-org/paradox for more information)
