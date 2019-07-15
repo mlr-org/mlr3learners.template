@@ -78,13 +78,14 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
     },
 
     predict_internal = function(task) {
-      pars = self$param_set$get_values(tags = "predict")
-      newdata = task$data(cols = task$feature_names)
-      type = ifelse(self$predict_type == "response", "response", "prob")
+      pars = self$param_set$get_values(tags = "predict") #get parameters with tag "predict"
+      newdata = task$data(cols = task$feature_names) #get newdata
+      type = ifelse(self$predict_type == "response", "response", "prob") #this is for the randomForest package
 
       p = invoke(predict, self$model, newdata = newdata,
         type = type, .args = pars)
 
+      #return a prediction object with PredictionClassif$new() or PredictionRegr$new()
       if (self$predict_type == "response") {
         PredictionClassif$new(task = task, response = p)
       } else {
@@ -92,6 +93,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
       }
     },
 
+    #add method for importance, if learner supports that. It must return a sorted (decreasing) numerical, named vector.
     importance = function() {
       if (is.null(self$model)) {
         stopf("No model stored")
@@ -109,6 +111,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
       if (pars[["importance"]] == "none") return(message("importance was set to 'none'. No importance available."))
     },
 
+    #add method for oob_error, if learner supports that.
     oob_error = function() {
       mean(self$model$err.rate[, 1])
     }
