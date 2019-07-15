@@ -82,5 +82,10 @@ result = run_autotest(learner)
 expect_true(result, info = result$error)
 ```
 
+## Check your package
+If this runs, your learner should be fine.
+```
+devtools::check()
+```
 
 
