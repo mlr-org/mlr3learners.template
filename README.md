@@ -4,7 +4,7 @@
 
 This packages provides a template for adding new learners for [mlr3](https://mlr3.mlr-org.com).
 
-Creating custom learners is covered in the [mlr3book](https://mlr3book.mlr-org.com).
+Creating custom learners is covered in the [mlr3book](https://mlr3book.mlr-org.com/extending-mlr3.html).
 
 
 # Instructions
@@ -20,7 +20,7 @@ Rename the following files to suit your learner:
 
 (For regression use the prefix "Regr" instead of "Classif". For example learners see https://github.com/mlr-org/mlr3learners)
 
-## 2) R/LearnerClassifRandomForest.R
+## 2) Edit R/LearnerYourLearner.R
 
 - Adapt the documentation to suit your learner.
 - Adapt names and the package, learner properties, etc.
@@ -73,7 +73,7 @@ The randomForest function supports `importance` and `oob_error`. You need to wri
 
 ## Test Your Function
 If you run `devtools::load_all()` the function `run_autotest()` is available in your global environment.
-Change the code in tests/testthat/test_classif_randomForest.R to fit your learner. Make sure that at least the following is tested:
+Change the code in tests/testthat/test_classif_randomForest.R to fit your learner. Make sure that at least the following is tested in the unit test tests/testthat/test_classif_your_learner.R:
 
 ```
 learner = LearnerClassifRanger$new()
@@ -83,7 +83,7 @@ expect_true(result, info = result$error)
 ```
 
 ## Check your package
-If this runs, your learner should be fine.
+If this runs, your learner should be fine: 
 ```
 devtools::check()
 ```
