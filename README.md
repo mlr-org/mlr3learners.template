@@ -13,7 +13,7 @@ This package serves as a starting point for learners to share with others.
 This repository is a minimal working package with the randomForest learner.
 Fork this repository and adapt the code to your learner.
 
-## 1) Rename Files
+## Rename Files
 Rename the following files to suit your learner:
 
 - R/LearnerClassifRandomForest.R
@@ -21,60 +21,17 @@ Rename the following files to suit your learner:
 
 (For regression use the prefix "Regr" instead of "Classif". For example learners see https://github.com/mlr-org/mlr3learners)
 
-## 2) Edit R/LearnerYourLearner.R
+## Edit R/LearnerYourLearner.R
 
 - Adapt the documentation to suit your learner.
 - Adapt names and the package, learner properties, etc.
-
-### The Parameter Set
-
-- For the parameter set see https://github.com/mlr-org/paradox for more information.
-- For an existing mlr learner, you can follow these rules:
-  
-`makeIntegerLearnerParam()` &rarr; `ParamInt$new()`
-
-`makeLogicalLearnerParam()` &rarr; `ParamLgl$new()`
-
-`makeNumericVectorLearnerParam()` &rarr; `ParamUty$new()`
-
-`makeIntegerVectorLearnerParam()` &rarr; `ParamUty$new()`
-
-`makeUntypedLearnerParam()` &rarr; `ParamUty$new()`
-
-`makeNumericLearnerParam()` &rarr; `ParamDbl$new()`
+  This is outlined in the [book](https://mlr3book.mlr-org.com/extending-mlr3.html)
 
 
-### The Training Method
-The `train_internal` method is a function which takes a task as input and returns the trained model from your learner.
-It's best to work with a test task, e.g.
-
-```r
-task = mlr_tasks$get("iris")
-```
-
-You cannot copy paste the mlr source code and use it for the mlr3 learner.
-Know your learner. You only have information of the task your defined learner in this method.
-
-### The Prediction Method
-Try to work with an example:
-
-```r
-library(devtools)
-load_all()
-library(mlr3)
-task = mlr_tasks$get("iris")
-lrn = LearnerClassifRandomForest$new()
-lrn$train(task = task)
-```
-Then you can write the prediction function and return a prediction object (`PredictionClassif$new()` or `PredictionRegr$new()`).
-
-### Learner Specific Methods
-The randomForest function supports `importance` and `oob_error`. You need to write methods for that as they will be tested.
-
-
-## Test Your Function
+## Test Your Learner
 If you run `devtools::load_all()` the function `run_autotest()` is available in your global environment.
-Change the code in tests/testthat/test_classif_randomForest.R to fit your learner. Make sure that at least the following is tested in the unit test tests/testthat/test_classif_your_learner.R:
+The autotest query the learner for its properties to create a custom test suite of tasks for it.
+Make sure that **at least** the following is executed in the unit test `tests/testthat/test_classif_your_learner.R` (adept names to your learner):
 
 ```
 learner = LearnerClassifRanger$new()
@@ -88,5 +45,3 @@ If this runs, your learner should be fine:
 ```
 devtools::check()
 ```
-
-
