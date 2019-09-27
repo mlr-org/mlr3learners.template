@@ -4,7 +4,8 @@
 
 This packages provides a template for adding new learners for [mlr3](https://mlr3.mlr-org.com).
 
-Creating custom learners is covered in the [mlr3book](https://mlr3book.mlr-org.com/extending-mlr3.html).
+Creating the actual learners is covered in the [mlr3book](https://mlr3book.mlr-org.com/extending-mlr3.html).
+This package serves as a starting point for learners to share with others.
 
 
 # Instructions
@@ -42,14 +43,14 @@ Rename the following files to suit your learner:
 
 `makeNumericLearnerParam()` &rarr; `ParamDbl$new()`
 
-- delete the option `tunable`, as it is not needed anymore
-- for dependencies, use the method $add_dep() (see https://github.com/mlr-org/paradox for more information)
 
 ### The Training Method
 The `train_internal` method is a function which takes a task as input and returns the trained model from your learner.
-It’s best to work with a test task, e.g.
+It's best to work with a test task, e.g.
 
+```r
 task = mlr_tasks$get("iris")
+```
 
 You cannot copy paste the mlr source code and use it for the mlr3 learner.
 Know your learner. You only have information of the task your defined learner in this method.
@@ -57,7 +58,7 @@ Know your learner. You only have information of the task your defined learner in
 ### The Prediction Method
 Try to work with an example:
 
-```
+```r
 library(devtools)
 load_all()
 library(mlr3)
