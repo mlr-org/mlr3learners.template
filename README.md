@@ -16,8 +16,8 @@ Fork this repository and adapt the code to your learner.
 ## Rename Files
 Rename the following files to suit your learner:
 
-- R/LearnerClassifRandomForest.R
-- tests/testthat/test_classif_randomForest.R
+- `R/LearnerClassifRandomForest.R`
+- `tests/testthat/test_classif_randomForest.R`
 
 (For regression use the prefix "Regr" instead of "Classif". For example learners see https://github.com/mlr-org/mlr3learners)
 
@@ -33,7 +33,7 @@ If you run `devtools::load_all()` the function `run_autotest()` is available in 
 The autotest query the learner for its properties to create a custom test suite of tasks for it.
 Make sure that **at least** the following is executed in the unit test `tests/testthat/test_classif_your_learner.R` (adept names to your learner):
 
-```
+```r
 learner = LearnerClassifRanger$new()
 expect_learner(learner)
 result = run_autotest(learner)
@@ -42,6 +42,6 @@ expect_true(result, info = result$error)
 
 ## Check your package
 If this runs, your learner should be fine: 
-```
+```r
 devtools::check()
 ```
