@@ -5,15 +5,11 @@
 #' @importFrom mlr3 mlr_learners LearnerClassif LearnerRegr
 "_PACKAGE"
 
-register_mlr3 = function() {
-
-  x = utils::getFromNamespace("mlr_learners", ns = "mlr3")
-
-  x$add("classif.randomForest", LearnerClassifRandomForest)
-}
-
 .onLoad = function(libname, pkgname) {
   # nocov start
-  register_mlr3()
-  setHook(packageEvent("mlr3", "onLoad"), function(...) register_mlr3(), action = "append")
+  # get mlr_learners dictionary from the mlr3 namespace
+  x = utils::getFromNamespace("mlr_learners", ns = "mlr3")
+
+  # add the learner to the dictionary
+  x$add("classif.randomForest", LearnerClassifRandomForest)
 } # nocov end
