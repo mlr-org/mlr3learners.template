@@ -17,11 +17,11 @@ Imports:
     mlr3,
     mlr3misc,
     paradox,
-    R6
+    R6,
+    randomForest
 Suggests:
     testthat,
-    rmarkdown,
-    randomForest
+    rmarkdown
 Remotes:
     mlr-org/mlr3,
     mlr-org/mlr3misc,
