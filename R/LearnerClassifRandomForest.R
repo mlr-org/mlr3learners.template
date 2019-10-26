@@ -1,10 +1,10 @@
 #' @title Classification Random Forest Learner
 #'
 #' @aliases mlr_learners_classif.randomForest
-#' @format [R6::R6Class] inheriting from [LearnerClassif].
+#' @format [R6::R6Class] inheriting from [mlr3::LearnerClassif].
 #'
 #' @description
-#' A [LearnerClassif] for a classification random forest implemented in randomForest::randomForest()] in package \CRANpkg{randomForest}.
+#' A [mlr3::LearnerClassif] for a classification random forest implemented in randomForest::randomForest()] in package \CRANpkg{randomForest}.
 #'
 #' @references
 #' Breiman, L. (2001).
@@ -15,16 +15,16 @@
 #' @export
 LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = LearnerClassif, # Adapt the name to your learner. For regression learners inherit = LearnerRegr.
   public = list(
-    initialize = function() { 
+    initialize = function() {
       ps = ParamSet$new( # parameter set using the paradox package
         params = list(
           ParamInt$new(id = "ntree", default = 500L, lower = 1L, tags = c("train", "predict")),
           ParamInt$new(id = "mtry", lower = 1L, tags = "train"),
           ParamLgl$new(id = "replace", default = TRUE, tags = "train"),
           ParamUty$new(id = "classwt", default = NULL, tags = "train"), #lower = 0
-          ParamUty$new(id = "cutoff", tags = "train"), 
+          ParamUty$new(id = "cutoff", tags = "train"),
           ParamUty$new(id = "strata", tags = "train"),
-          ParamUty$new(id = "sampsize", tags = "train"), 
+          ParamUty$new(id = "sampsize", tags = "train"),
           ParamInt$new(id = "nodesize", default = 1L, lower = 1L, tags = "train"),
           ParamInt$new(id = "maxnodes", lower = 1L, tags = "train"),
           ParamFct$new(id = "importance", default = "none", levels = c("accuracy", "gini", "none"), tag = "train"), #importance is a logical value in the randomForest package.
@@ -36,18 +36,18 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
           ParamLgl$new(id = "keep.forest", default = TRUE, tags = "train"),
           ParamLgl$new(id = "keep.inbag", default = FALSE, tags = "train")
         )
-      ) 
+      )
 
       ps$values = list(importance = "none") # Change the defaults. We set this here, because the default is FALSE in the randomForest package.
 
       super$initialize(
         # see the mlr3book for a description: https://mlr3book.mlr-org.com/extending-mlr3.html
-        id = "classif.randomForest", 
-        packages = "randomForest", 
-        feature_types = c("numeric", "factor", "ordered"), 
-        predict_types = c("response", "prob"), 
+        id = "classif.randomForest",
+        packages = "randomForest",
+        feature_types = c("numeric", "factor", "ordered"),
+        predict_types = c("response", "prob"),
         param_set = ps,
-        properties = c("weights", "twoclass", "multiclass", "importance", "oob_error") 
+        properties = c("weights", "twoclass", "multiclass", "importance", "oob_error")
       )
     },
 
@@ -61,7 +61,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
         pars[["importance"]] = FALSE
       }
 
-      # Get formula, data, classwt, cutoff for the randomForest 
+      # Get formula, data, classwt, cutoff for the randomForest
       f = task$formula() #the formula is available in the task
       data = task$data() #the data is avail
       levs = levels(data[[task$target_names]])
@@ -97,7 +97,7 @@ LearnerClassifRandomForest = R6Class("LearnerClassifRandomForest", inherit = Lea
       }
     },
 
-    # Add method for importance, if learner supports that. 
+    # Add method for importance, if learner supports that.
     # It must return a sorted (decreasing) numerical, named vector.
     importance = function() {
       if (is.null(self$model)) {
