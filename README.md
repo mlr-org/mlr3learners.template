@@ -25,7 +25,7 @@ Rename the following files to suit your learner:
 
 - Adapt the documentation to suit your learner.
 - Adapt names and the package, learner properties, etc.
-  This is outlined in the [book](https://mlr3book.mlr-org.com/extending-mlr3.html)
+  This is outlined in the [book](https://mlr3book.mlr-org.com/ext-learner.html)
 - Adapt `R/zzz.R`. The code in the `.onLoad` function is executed on package load and adds the learner to the `mlr_learners` dictionary.
 - Name your package and GitHub repository `mlr3learners.<CRAN_package_name>`
 
