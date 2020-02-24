@@ -5,6 +5,13 @@
 #' @importFrom mlr3 mlr_learners LearnerClassif LearnerRegr
 "_PACKAGE"
 
+dummy_import = function() {
+  # R CMD check does not detect the usage of randomForest in R6 classes
+  # This function is a workaround to suppress check notes about
+  # "All declared imports should be used"
+  randomForest::randomForest()
+}
+
 .onLoad = function(libname, pkgname) {
   # nocov start
   # get mlr_learners dictionary from the mlr3 namespace
