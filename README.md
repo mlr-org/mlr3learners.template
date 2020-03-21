@@ -20,20 +20,22 @@ Perform the following tasks to create your learner:
 3. Check if the learner supports out-of-bag error estimation internally.
    If yes, add a `oob_error()` method in the respective learner class.
 4. Add yourself as the maintainer in `DESCRIPTION`.
-5. Set up continuous integration.
+5. Set up Continuous Integration (CI).
    To do so, you need admin permission for the repository.
    1. Run `tic::use_ghactions_deploy()`
    2. Run `tic::use_ghactions_yml()`
    3. Fix the badge in `README.md` with the learner name.
-6. Test your learner locally by running `devtools::test()`
-7. Check your package by running `rcmdcheck::rcmdcheck()`
-8. Check if your learner complies with the [mlr style guide](https://github.com/mlr-org/mlr3/wiki/Style-Guide).
+6. Run `devtools::document(roclets = c('rd', 'collate', 'namespace'))` to create the NAMESPACE and man/ files.
+7. Leave the files in `man-roxygen` as they are - they will just work.
+8. Test your learner locally by running `devtools::test()`
+9. Check your package by running `rcmdcheck::rcmdcheck()`
+10. Check if your learner complies with the [mlr style guide](https://github.com/mlr-org/mlr3/wiki/Style-Guide).
 
 After your learner is accepted, it can be added to [mlr3learners.drat](https://github.com/mlr3learners/mlr3learners.drat), making it installabe via the canonical `install.packages()` function without the need to live on CRAN.
 
 **!Important!**: Delete all instructions up to this point and just leave the part below.
 
-# mlr3learners.<package>
+# mlr3learners.\<package\>
 
 <!-- badges: start -->
 [![R CMD Check via {tic}](https://img.shields.io/github/workflow/status/mlr3learners/mlr3learners.<package>/R%20CMD%20Check%20via%20%7Btic%7D?logo=github&label=R%20CMD%20Check%20via%20{tic}&style=flat-square)](https://github.com/mlr3learners/mlr3learners.<package>/actions)

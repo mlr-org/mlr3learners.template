@@ -7,9 +7,14 @@
 #'   \CRANpkg{<package>}.
 #' Calls [<package>::<algorithm>()].
 #'
+#' @templateVar id <learner id>
+#' @template section_dictionary_learner
+#'
 #' @references
 #' <optional>
 #'
+#' @template seealso_learner
+#' @template example
 #' @export
 # <Adapt the name to your learner. For regression learners inherit = LearnerRegr>
 Learner<type><algorithm> = R6Class("Learner<type><algorithm>",
