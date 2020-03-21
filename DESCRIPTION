@@ -1,32 +1,26 @@
-Package: mlr3learnertemplate
+Package: mlr3learnerstemplate
 Title: Template for Adding New Learners to 'mlr3'
 Version: 0.1.0
 Authors@R:
-    c(person(given = "given.name",
-             family = "family.name",
-             role = "cre",
-             email = "email@email.com")
-      )
+    person(given = "given.name",
+           family = "family.name",
+           role = "cre",
+           email = "email@email.com")
 Description: Template for adding new learners to 'mlr3'.
 License: LGPL-3
 Depends:
     R (>= 3.1.0)
 Imports:
-    R6,
     data.table,
     mlr3 (>= 0.1.7),
     mlr3misc,
     paradox,
-    randomForest
+    R6
 Suggests:
     checkmate,
-    testthat,
-    rmarkdown
-Remotes:
-    mlr-org/mlr3,
-    mlr-org/mlr3misc,
-    mlr-org/paradox
+    rmarkdown,
+    testthat
 Encoding: UTF-8
 NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
