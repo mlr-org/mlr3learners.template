@@ -1,6 +1,6 @@
 Package: mlr3learnerstemplate
 Title: Template for Adding New Learners to 'mlr3'
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R:
     person(given = "given.name",
            family = "family.name",
