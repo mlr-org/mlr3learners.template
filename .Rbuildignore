@@ -12,3 +12,6 @@
 ^docs$
 ^pkgdown$
 ^\.vscode$
+^\.ccache$
+^\.github$
+^clang-.*
