@@ -13,9 +13,9 @@ test_that("<type>.<algorithm>", {
     "..." # not used
   )
 
-  result = run_paramtest(learner, fun, exclude)
-  expect_true(result, info = paste0("Missing parameters:\n",
-    paste0(result$missing, collapse = "\n")))
+  ParamTest = run_paramtest(learner, fun, exclude)
+  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
+    paste0("- '", result$missing,"'", collapse = "\n")))
 })
 
 # example for checking a "control" function of a learner
@@ -26,7 +26,7 @@ test_that("<type>.<algorithm>_control", {
     "center", # deprecated
   )
 
-  result = run_paramtest(learner, fun, exclude)
-  expect_true(result, info = paste0("Missing parameters:\n",
-    paste0(result$missing, collapse = "\n")))
+  ParamTest = run_paramtest(learner, fun, exclude)
+  expect_true(ParamTest, info = paste0("\nMissing parameters:\n",
+    paste0("- '", result$missing,"'", collapse = "\n")))
 })
