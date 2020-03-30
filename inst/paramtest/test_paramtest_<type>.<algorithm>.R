@@ -6,12 +6,11 @@ test_that("<type>.<algorithm>", {
   exclude = c(
     # Examples how to exclude certain parameters. Always comment why a parameter
     # was excluded!
-    "formula", # .train
-    "data", # .train
-    "na.action", # Only na.omit and na.fail available
-    "weights", # .train
-    "control", # mboost::boost_control
-    "..." # mboost::boost_control
+    "formula", # handled via mlr3
+    "data", # handled via mlr3
+    "weights", # handled via mlr3
+    "control", # handled to mboost::boost_control
+    "..." # not used
   )
 
   result = run_paramtest(learner, fun, exclude)
