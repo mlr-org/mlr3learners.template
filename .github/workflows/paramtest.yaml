@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: ubuntu-latest, r: "release" }
+          - { os: ubuntu-latest, r: "release", paramtest: "true" }
 
     env:
       # otherwise remotes::fun() errors cause the build to fail. Example: Unavailability of binaries
@@ -32,6 +32,8 @@ jobs:
       CCACHE_SLOPPINESS: include_file_ctime
       # make sure to run `tic::use_ghactions_deploy()` to set up deployment
       id_rsa: ${{ secrets.id_rsa }}
+      # env for ParamTest
+      PARAMTEST: ${{ matrix.config.paramtest }}
       # prevent rgl issues because no X11 display is available
       RGL_USE_NULL: true
 
@@ -93,4 +95,5 @@ jobs:
       - name: "[Stage] Parameter test"
         run: |
           R CMD INSTALL .
+          Rscript -e "remotes::install_dev('mlr3')"
           Rscript -e "testthat::test_dir(system.file('paramtest', package = '<package>'))"
