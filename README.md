@@ -2,7 +2,7 @@
 
 This packages provides a template for adding new learners for [mlr3](https://mlr3.mlr-org.com).
 
-Creating new learners is covered in section ["Adding new learners"](https://mlr3book.mlr-org.com/extending-learners.html) in the mlr3book.
+Creating new learners is covered in detail in section ["Adding new learners"](https://mlr3book.mlr-org.com/extending-learners.html) in the mlr3book.
 This package serves as a starting point for learners to share with others.
 
 ## Instructions
@@ -33,6 +33,9 @@ Perform the following tasks to create your learner:
 1. Check your package by running `rcmdcheck::rcmdcheck()`
 1. Check if your learner complies with the [mlr style guide](https://github.com/mlr-org/mlr3/wiki/Style-Guide).
 1. Ensure that the CI builds complete successfully (via the "Actions" menu in the repo).
+1. Check on last small details like the name of the learner package and for possible leftovers of the placeholders used in the template.
+
+ :point_right: Last but not least go through [this checklist] :page_facing_up: to make sure your learner is ready for review.
 
 After your learner is accepted, it can be added to [mlr3learners.drat](https://github.com/mlr3learners/mlr3learners.drat), making it installabe via the canonical `install.packages()` function without the need to live on CRAN.
 
