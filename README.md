@@ -35,7 +35,11 @@ Perform the following tasks to create your learner:
 1. Ensure that the CI builds complete successfully (via the "Actions" menu in the repo).
 1. Check on last small details like the name of the learner package and for possible leftovers of the placeholders used in the template.
 
- :point_right: Last but not least go through [this checklist] :page_facing_up: to make sure your learner is ready for review.
+Last but not least go through
+
+ :point_right: [this checklist](https://github.com/mlr-org/mlr3learners.template/issues/5) :page_facing_up:
+
+ to make sure your learner is ready for review.
 
 After your learner is accepted, it can be added to [mlr3learners.drat](https://github.com/mlr3learners/mlr3learners.drat), making it installabe via the canonical `install.packages()` function without the need to live on CRAN.
 
