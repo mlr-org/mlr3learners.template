@@ -43,6 +43,12 @@ Last but not least go through
 
 After your learner is accepted, it can be added to [mlr3learners.drat](https://github.com/mlr3learners/mlr3learners.drat), making it installabe via the canonical `install.packages()` function without the need to live on CRAN.
 
+**Resources for adding a new learner (summary)**
+
+- [mlr3learners.template](https://github.com/mlr-org/mlr3learners.template)
+- [mlr3book section "Adding new learners" including FAQ](https://mlr3book.mlr-org.com/extending-learners.html)
+- [Checklist prior to requesting a review](https://github.com/mlr-org/mlr3learners.template/issues/5)
+
 **!Important!**: Delete all instructions up to this point and just leave the part below.
 
 # mlr3learners.\<package\>
