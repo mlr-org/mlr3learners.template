@@ -55,8 +55,9 @@ After your learner is accepted, it can be added to [mlr3learners.drat](https://g
 
 <!-- badges: start -->
 
-[![R CMD Check via {tic}](https://github.com/mlr3learners/mlr3learners.<package>/workflows/R%20CMD%20Check%20via%20{tic}/badge.svg?branch=master)](https://github.com/mlr3learners/mlr3learners.<package>/actions)
+[![tic](https://github.com/mlr3learners/mlr3learners.<package>/workflows/tic/badge.svg?branch=master)](https://github.com/mlr3learners/mlr3learners.<package>/actions)
 [![Parameter Check](https://github.com/mlr3learners/mlr3learners.<package>/workflows/Parameter%20Check/badge.svg?branch=master)](https://github.com/mlr3learners/mlr3learners.<package>/actions)
+![mlr3learners.drat](https://github.com/mlr3learners/mlr3learners.<package>/workflows/mlr3learners.drat/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/mlr3learners/mlr3learners.<package>/branch/master/graph/badge.svg)](https://codecov.io/gh/mlr3learners/mlr3learners.<package>)
 [![StackOverflow](https://img.shields.io/badge/stackoverflow-mlr3-orange.svg)](https://stackoverflow.com/questions/tagged/mlr3)
 
