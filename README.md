@@ -22,7 +22,7 @@ Perform the following tasks to create your learner:
 1. Add yourself as the maintainer in `DESCRIPTION`.
 1. Set up Continuous Integration (CI).
    The GitHub Actions YAML files live in `.github/workflows`.
-   1. Replace `<package>` in l.13 of `tic.R` with the name of the package.
+   1. Replace `<package>` in l.17 of `tic.R` with the name of the package.
    1. Update the "Paramtest" files in `inst/paramtest/` to ensure no parameter was forgotten in the learner.
       Make sure that the CI test passes for "Param Check".
    1. Update the badge in `README.md` with the package name.
